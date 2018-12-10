@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
+  <script type="text/javascript" src="client.js"></script>
+	<!-- <link rel="stylesheet" href="jquery.fancybox.min.css" />
+	<script src="jquery.fancybox.min.js"></script> -->
+
+	<link rel="stylesheet" href="styles.css">
+
+	<title>Research</title>
+</head>
+
+<body>
+
+<div id="wrapper">
+	<div id="left">
+		<img src="userlogo.png" id="userPic" /> <!-- Can alter the picture for Faculty, or we can add images to our Database (stretch goal) -->
+		<p id="userName">Mikhail Chebotar</p> <!-- Dynamically place Username from JSON -->
+		<p id="userType">Student</p> <!-- Dynamically place User Type from JSON -->
+		<div id="nav">
+			<a href="homepage.html"><button class="navButton">Home</button></a>
+			<a href="settings.html"><button class="navButton">Profile</button></a>
+			<a href="research.html"><button class="navButton">Research</button></a>
+			<a href="login.html"><button class="navButton" id="signOutBtn">Sign Out</button></a>
+		</div>
+	</div>
+	<div id="right">
+		<div id ="researchHeaderWrapper">
+			<h1 id="settingLogo"><span>RIT</span> Research Search</h1>
+			<h1 id="settingTitle"><span>Research</span></h1>
+		</div>
+		<div id="frame">
+			<div class="dropDown">
+				<button class="dropDownBtn">Category <div class="arrow"/></button>
+				<div class="dropContent">
+					<a href="#">Math</a>
+					<a href="#">Science</a>
+					<a href="#">General</a>
+				</div>
+			</div>
+			<div class="dropDown">
+				<button class="dropDownBtn">Professor <div class="arrow"/></button>
+				<div class="dropContent">
+					<a href="#">Michael Floeser</a>
+					<a href="#">Daniel Bogaard</a>
+					<a href="#">Bryan French</a>
+				</div>
+			</div>
+			<div id="frameContent">
+				<div class="researchDataFrame"> <!-- Dynamically section Area from JSON. Number of copies will vary depending on query -->
+					<div class="researchNameSection">
+						<h1>Database Login System</h1>
+					</div>
+					<div class="researchInfoSection">
+						<button class="infoBtn">Info</button>
+					</div>
+				</div> <!-- End Dynamic dataFrame -->
+				<div id="#divForm" style="display:none">
+				</div>
+			</div>
+		</div>
+		<div class="createResearchDiv">
+			<button class="infoBtn">Create</button> <!-- Only show to Faculty user group -->
+		</div>
+		<div id="myResearchModal" class="modal">
+			<div class="modal-content">
+				<div class="descSection">
+					<h2>Database Login System</h2>
+					<p id="modalResearchDesc"><b>Description</b>: Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer vel suscipit nisi. Sed cursus velit tincidunt arcu finibus, ac varius quam vehicula. Sed vel purus urna. Quisque et nibh eu odio volutpat consectetur. Etiam interdum augue et tortor varius congue. In ac laoreet leo, cursus gravida nisi. Praesent volutpat egestas tincidunt. Nullam pharetra, dolor consequat pellentesque sodales, erat lacus rutrum eros, at eleifend enim risus id neque. Nunc hendrerit laoreet tellus, et accumsan nisi dignissim et. Integer ut dapibus nisl, nec hendrerit lectus. Aliquam aliquam lorem quis purus varius, eu rhoncus odio dignissim. Integer dignissim rutrum dictum.</p>
+				</div>
+				<div id="emptySpace">
+				</div>
+				<span class="close">&times;</span>
+			</div>
+		</div>
+
+		<div id="myCreateModal" class="modal2">
+			<div class="modal-content2">
+				<div id="createContent">
+					<p>Description</p>
+					<form  id="createForm" action="">
+						<textarea id="create" name="desc" placeholder="Describe your project" style="height:200px"></textarea>
+						<input id="createSubmit" type="submit" value="Submit">
+					</form>
+				</div>
+<!-- 				<div id="btnDiv">
+					<div id="emptySpace"></div>
+
+					<button class="modalBtn">Create</button>
+				</div> -->
+				<span class="close">&times;</span>
+			</div>
+		</div>
+	</div>
+</div>
+
+<script>
+$(document).ready(function(){
+  loadUser();
+
+  	var modal2 = document.getElementById('myCreateModal');
+  	var btn2 = document.getElementsByClassName("infoBtn")[1];
+  	var span2 = document.getElementsByClassName("close")[1];
+
+ 	btn2.onclick = function() {
+ 		modal2.style.display = "block";
+ 	}
+
+ 	span2.onclick = function() {
+	    modal2.style.display = "none";
+	}
+
+
+
+  	var modal = document.getElementById('myResearchModal');
+	var btn = document.getElementsByClassName("infoBtn")[0];
+	var span = document.getElementsByClassName("close")[0];
+
+	btn.onclick = function() {
+	    modal.style.display = "block";
+	}
+
+	span.onclick = function() {
+	    modal.style.display = "none";
+	}
+
+	window.onclick = function(event) {
+	    if (event.target == modal) {
+	        modal.style.display = "none";
+	    }
+	    else if(event.target == modal2){
+	    	modal2.style.display = "none";
+	    }
+	}
+
+
+	// $('.dataFrame').on('click', function(){
+	// 	console.log(this);
+	// 	//alert("hello");
+	// });
+
+	/* This is basic - uses default settings */
+	
+	// $(".dataFrame").fancybox();
+	
+	// /* Using custom settings */
+	
+	// $("a#inline").fancybox({
+	// 	'hideOnContentClick': true
+	// });
+
+	/* Apply fancybox to multiple items */
+  loadResearch();
+});
+</script>
+</body>
+
+</html>
